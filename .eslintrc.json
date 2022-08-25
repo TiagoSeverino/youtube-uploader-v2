@@ -24,7 +24,8 @@
 				"argsIgnorePattern": "_"
 			}
 		],
-		"import/extensions": ["error", "ignorePackages", { "ts": "never" }]
+		"import/extensions": ["error", "ignorePackages", { "ts": "never" }],
+		"no-empty": "off"
 	},
 	"settings": {
 		"import/resolver": {
