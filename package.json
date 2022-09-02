@@ -1,5 +1,5 @@
 {
-	"name": "youtube-uploader-v2",
+	"name": "@TiagoSeverino/youtube-uploader",
 	"version": "1.0.1",
 	"main": "dist/index.js",
 	"repository": "git@github.com:TiagoSeverino/youtube-uploader-v2.git",
@@ -7,7 +7,8 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "tsc",
-		"dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/example.ts"
+		"dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/example.ts",
+		"release": "standard-version && git push --follow-tags && npm publish"
 	},
 	"devDependencies": {
 		"@types/node": "^18.7.13",
@@ -20,6 +21,7 @@
 		"eslint-plugin-import": "^2.22.1",
 		"eslint-plugin-prettier": "^3.1.4",
 		"prettier": "^2.2.0",
+		"standard-version": "^9.5.0",
 		"ts-node-dev": "^1.0.0",
 		"typescript": "^4.1.2"
 	},
