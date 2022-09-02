@@ -178,18 +178,22 @@ const uploadVideo = async (
 	description &&
 		(await textBoxes[1].type(description.substring(0, maxDescLen)));
 
-	const childOption = await page.$x('//*[contains(text(),"No, it\'s")]');
+	const childOption = (await page.$x(
+		'//*[contains(text(),"No, it\'s")]'
+	)) as ElementHandle<Element>[];
 	await childOption[0].click();
 
-	const moreOption = await page.$x(
+	const moreOption = (await page.$x(
 		"//*[normalize-space(text())='Show more']"
-	);
+	)) as ElementHandle<Element>[];
 	await moreOption[0].click();
 	// Wait until title & description box pops up
 	if (thumbnail) {
 		const thumbnailChooserXpath = xpathTextSelector('upload thumbnail');
 		await page.waitForXPath(thumbnailChooserXpath);
-		const thumbBtn = await page.$x(thumbnailChooserXpath);
+		const thumbBtn = (await page.$x(
+			thumbnailChooserXpath
+		)) as ElementHandle<Element>[];
 		const [thumbChooser] = await Promise.all([
 			page.waitForFileChooser(),
 			thumbBtn[0].click(), // button that triggers file selection
@@ -209,17 +213,17 @@ const uploadVideo = async (
 	const nextBtnXPath =
 		"//*[normalize-space(text())='Next']/parent::*[not(@disabled)]";
 	await page.waitForXPath(nextBtnXPath);
-	let next = await page.$x(nextBtnXPath);
+	let next = (await page.$x(nextBtnXPath)) as ElementHandle<Element>[];
 	await next[0].click();
 	// await sleep(2000)
 	await page.waitForXPath(nextBtnXPath);
 	// click next button
-	next = await page.$x(nextBtnXPath);
+	next = (await page.$x(nextBtnXPath)) as ElementHandle<Element>[];
 	await next[0].click();
 
 	await page.waitForXPath(nextBtnXPath);
 	// click next button
-	next = await page.$x(nextBtnXPath);
+	next = (await page.$x(nextBtnXPath)) as ElementHandle<Element>[];
 	await next[0].click();
 	//  const publicXPath = `//*[normalize-space(text())='Public']`
 	//  await page.waitForXPath(publicXPath)
@@ -241,7 +245,7 @@ const uploadVideo = async (
 	do {
 		await page.waitForTimeout(500);
 		uploadedLink = await page.evaluate(
-			(e) => e.getAttribute('href'),
+			(e) => e && e.getAttribute('href'),
 			uploadedLinkHandle
 		);
 	} while (
@@ -253,7 +257,9 @@ const uploadVideo = async (
 	let closeDialog;
 	for (let i = 0; i < 10; i++) {
 		try {
-			closeDialog = await page.$x(closeDialogXPath);
+			closeDialog = (await page.$x(
+				closeDialogXPath
+			)) as ElementHandle<Element>[];
 			await closeDialog[0].click();
 			break;
 		} catch (error) {
