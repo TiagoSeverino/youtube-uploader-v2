@@ -1,4 +1,6 @@
 *.env
+*.mp4
+cookies.json
 ormconfig.js
 
 # Logs

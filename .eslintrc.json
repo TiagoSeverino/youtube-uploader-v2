@@ -19,13 +19,18 @@
 		"prettier/prettier": "error",
 		"class-methods-use-this": "off",
 		"@typescript-eslint/no-unused-vars": [
-			"error",
+			"warn",
 			{
 				"argsIgnorePattern": "_"
 			}
 		],
 		"import/extensions": ["error", "ignorePackages", { "ts": "never" }],
-		"no-empty": "off"
+		"no-empty": "off",
+		"array-callback-return": "off",
+		"no-use-before-define": "off",
+		"no-await-in-loop": "off",
+		"no-param-reassign": "warn",
+		"no-loop-func": "off"
 	},
 	"settings": {
 		"import/resolver": {
